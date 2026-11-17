@@ -1,0 +1,21 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+storageState-*.json
+
+# GitLab token
+.gitlabtoken.env
+# Levantamentos de testes
+levantamentos_testes/
+
+# VS Code
+.vscode/
+
+# Documentos internos da Prodemge (mantidos apenas localmente)
+/DOCTO_ARQUITETURA_*.pdf
+/LISTA_EXERCICIOS_*.pdf

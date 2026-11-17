@@ -1,0 +1,48 @@
+{
+  "name": "orangeHRM-e2e-playwright_teste",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "1.58.0",
+    "@types/node": "25.5.0",
+    "cross-env": "^10.1.0",
+    "eslint": "^10.2.1",
+    "exceljs": "^4.4.0"
+  },
+  "scripts": {
+    "report": "npx playwright show-report",
+    "testeInteg:test": "cross-env ENV=testeInteg npx playwright test --workers=1",
+    "testeInteg:test:ui": "cross-env ENV=testeInteg npx playwright test --ui",
+    "testeInteg:operador:test": "cross-env ENV=testeInteg npx playwright test --project=operador-chromium --project=operador-firefox --project=operador-webkit --workers=1",
+    "testeInteg:operador:test:chrome": "cross-env ENV=testeInteg npx playwright test --project=operador-chromium --workers=1",
+    "testeInteg:operador:test:chrome:headless": "cross-env ENV=testeInteg HEADLESS=true npx playwright test --project=operador-chromium --workers=1",
+    "testeInteg:operador:test:ui": "cross-env ENV=testeInteg npx playwright test --project=operador-chromium --ui",
+    "relatorio:testes": "node levantamentos_testes/gerar_relatorio.js"
+  },
+  "comentarios_Scriptis_comandos_terminal_bash": {
+    "rodarScript": "rodar scripts -> npm run ",
+    "script:test": "roda todos os papeis em todos os browsers, gerando relatório html",
+    "script:test:ui": "abre a interface do Playwright com todos os papeis disponíveis",
+    "script:papel:test": "roda todos os browsers de um papel específico, gerando relatório html",
+    "script:papel:test:chrome": "roda apenas o Chrome de um papel específico, gerando relatório html",
+    "script:papel:test:ui": "abre a interface do Playwright filtrando pelo project do papel específico",
+    "definirTAG": "rodar teste com tag -> -- --grep 'X[nome_tagX]' ",
+    "definirMaisUmaTAG": "rodar 2 tags, um por vez -> -- --grep 'X[nome_tag1X]|X[nome_tag2X]' --workers=1 ",
+    "definirQtde": "repetir 5 vezes, 1 por vez -> -- --repeat-each=5 --workers=1 ",
+    "exemploBash_1_ui_operador": "npm run testeInteg:operador:test:ui",
+    "exemploBash_2_ui_financeiro": "npm run testeInteg:financeiro:test:ui",
+    "exemploBash_3_chrome_operador": "npm run testeInteg:operador:test:chrome",
+    "exemploBash_4_tag_na_ui": "npm run testeInteg:operador:test:ui -- --grep 'X[nome_tagX]' ",
+    "exemploBash_5_tag_html_chrome": "npm run testeInteg:operador:test:chrome -- --grep 'X[nome_tagX]' ",
+    "exemploBash_6_duas_tags_uma_por_vez": "npm run testeInteg:operador:test:chrome -- --grep 'X[tag1X]|X[tag2X]' --workers=1 ",
+    "exemploBash_7_repetir_com_browser": "npm run testeInteg:operador:test:chrome -- --grep 'X[nome_tagX]' --repeat-each=5 --workers=1 ",
+    "exemploBash_8_headless": "npm run testeInteg:operador:test:chrome:headless",
+    "exemploBash_8b_headless_com_tag": "npm run testeInteg:operador:test:chrome:headless -- --grep 'X[nome_tagX]' ",
+    "exemploBash_9_sem_limpeza": "npm run testeInteg:operador:test:chrome -- --grep-invert 'X[limpezaX]' ",
+    "ATENCAO_novos_papeis": "Ao adicionar novo papel em config/usuarios.js e global-setup.js, adicionar aqui os scripts correspondentes seguindo o padrão testeInteg:{papel}:test, testeInteg:{papel}:test:chrome, testeInteg:{papel}:test:ui"
+  }
+}

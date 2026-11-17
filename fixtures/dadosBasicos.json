@@ -1,0 +1,78 @@
+{
+  "login": {
+    "cpfInvalido": "12345678910"
+  },
+  "comuns": {
+
+  },
+  "botao": {
+    "novo": "Novo",
+    "concluir": "Concluir",
+    "sim": "Sim",
+    "nao": "Não",
+    "pesquisar": "Pesquisar",
+    "voltar": "Voltar",
+    "sair": "Sair",
+    "add": "Add",
+    "save": "Save",
+    "search": "Search",
+    "yesDelete": "Yes, Delete",
+    "noCancel" : "No, Cancel"
+
+  },
+  "opcao": {
+    "pim": "PIM",
+    "employeeInformation": "Employee Information",
+    "addEmployee": "Add Employee",
+    "personalDetails": "Personal Details",
+    "admin": "Admin", 
+    "systemUsers": "System Users", 
+    "addUser": "Add User",
+    "editUser": "Edit User",
+    "ess": "ESS",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "logout": "Logout"
+  },
+  "campo": {
+    "employeeId": "Employee Id",
+    "firstName": "First Name",
+    "middleName": "Middle Name",
+    "lastName": "Last Name",
+    "userRole": "User Role", 
+    "employeeName": "Employee Name", 
+    "status": "Status",
+    "username": "Username", 
+    "password": "Password", 
+    "confirmPassword": "Confirm Password",
+    "changePassword": "Change Password ?"
+  },
+  "pessoa": {
+    "joao": "Joao",
+    "pereira": "Pereira",
+    "santos": "Santos"
+  },
+  "mensagem": { 
+  "credenciaisInvalidas": "Invalid credentials",
+  "testeAutomatizadoPlaywright": "Teste automatizado em Playwright", 
+  "succesfullySaved": "Successfully Saved",
+  "succesfullyUpdated": "Successfully Updated",
+  "succesfullyDeleted": "Successfully Deleted",
+  "required": "Required"
+ },
+  "arquivo": {
+    "arquivoPDFTestePath": "fixtures/arquivoPDFTeste.pdf",
+    "imagemJPGTestePath": "fixtures/imagemJPGTeste.jpg",
+    "imagemPNGTestePath": "fixtures/imagemPNGTeste.png",
+    "imagemUsuarioTestePath": "fixtures/imagemUsuarioTeste.jpg",
+    "limite200pxLarguraImg": "200",
+    "limite200pxAlturaImg": "200"
+  },
+  "informacao": {
+    "areYouSure": "Are you Sure?",
+    "login": "Login",
+    "fotoPerfil": "Foto de Perfil Funcionario",
+    "senhaValida": "Teste@2026",
+    "novaSenhaValida": "Teste@2027"
+  }
+}

@@ -1,0 +1,20 @@
+#Depois digite algum comando que abra a interface do Playwright, para testar se a 
+ferramenta instalou corretamente, exemplo: 
+    npm run testeInteg:operador:test:ui
+(Confirme que a interface é aberta corretamente e que não são apresentados erros 
+relacionados à instalação.)
+Outros comandos que podem ser executados, dependendo da forma como se 
+pretende rodar os testes e que ficam criados dentro de scripts do packag.json:
+# Rodar todos os testes do papel operador no Chrome com relatório HTML
+    npm run testeInteg:operador:test:chrome
+# Rodar em modo headless (sem abrir a janela do browser)
+    npm run testeInteg:operador:test:chrome:headless
+# Filtrar por tag
+    npm run testeInteg:operador:test:chrome -- --grep '\[CT_#NNN\]'
+# Repetir um teste 5 vezes, sendo 1 por vez (útil para verificar flakiness)
+    npm run testeInteg:operador:test:chrome -- --grep '\[CT_#NNN\]' --repeat-each=5 --
+    workers=1
+# Abrir o último relatório HTML gerado
+    npm run report
+# Validar configuração de autenticação sem rodar testes
+    node validar-autenticacao.mjs
