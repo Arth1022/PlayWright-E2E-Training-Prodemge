@@ -32,7 +32,12 @@
     "ess": "ESS",
     "enabled": "Enabled",
     "disabled": "Disabled",
-    "logout": "Logout"
+    "logout": "Logout",
+    "recruitment": "Recruitment",
+    "vacancies": "Vacancies",
+    "addVacancy": "Add Vacancy",
+    "editVacancy": "Edit Vacancy",
+    "qaEngineer": "QA Engineer"
   },
   "campo": {
     "employeeId": "Employee Id",
@@ -45,7 +50,11 @@
     "username": "Username", 
     "password": "Password", 
     "confirmPassword": "Confirm Password",
-    "changePassword": "Change Password ?"
+    "changePassword": "Change Password ?",
+    "vacancyName": "Vacancy Name",
+    "jobTitle": "Job Title",
+    "hiringManager": "Hiring Manager",
+    "vacancy": "Vacancy"
   },
   "pessoa": {
     "joao": "Joao",

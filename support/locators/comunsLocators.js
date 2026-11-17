@@ -16,6 +16,10 @@ const comunsLocators = {
         return `//aside//a[contains(@class,'oxd-main-menu-item')][.//span[normalize-space()="${opcao}"]]`;
     },
 
+    getAbaMenuSuperior(aba) {
+        return `//nav//a[contains(@class,'oxd-topbar-body-nav-tab-item')][normalize-space()="${aba}"]`;
+    },
+
     // Filtra pelo texto porque o sistema pode exibir mais de uma mensagem ao mesmo tempo
     // (ex: "Successfully Deleted" junto com "No Records Found")
     getMensagemTemporaria(mensagem) {

@@ -24,6 +24,13 @@ export default class ComunsPage {
     await this.garantirTelaCarregada();
   }
 
+  async selecionarAbaMenuSuperior(aba) {
+    const item = this.page.locator(comunsLocators.getAbaMenuSuperior(aba));
+    await this.helpersPage.aguardarElemDisponivelEVisivel(item);
+    await item.click();
+    await this.garantirTelaCarregada();
+  }
+
   async garantirTelaInicialPorNomeCarregada(nomeTela) {
     await this.garantirTelaCarregada();
     const titulo = this.page.locator(comunsLocators.getTituloListagem(nomeTela));
