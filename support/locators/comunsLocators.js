@@ -35,6 +35,10 @@ const comunsLocators = {
         return `//label[normalize-space()="${nomeCampo}"]/parent::div/following-sibling::div//input`;
     },
 
+    getAreaTextoPorLabel(nomeCampo) {
+        return `//label[normalize-space()="${nomeCampo}"]/parent::div/following-sibling::div//textarea`;
+    },
+
     getCampoPorPlaceholder(placeholder) {
         return `//input[@placeholder="${placeholder}"]`;
     },
@@ -53,6 +57,15 @@ const comunsLocators = {
 
     getDropdownPorLabel(nomeCampo) {
         return `//label[normalize-space()="${nomeCampo}"]/parent::div/following-sibling::div//div[contains(@class,'oxd-select-text-input')]`;
+    },
+
+    getBotaoArquivoPorLabel(nomeCampo) {
+        return `//label[normalize-space()="${nomeCampo}"]/parent::div/following-sibling::div//div[contains(@class,'oxd-file-button')]`;
+    },
+
+    // Nome do arquivo ja carregado no campo, que tambem aciona o download ao ser clicado
+    getNomeArquivoPorLabel(nomeCampo) {
+        return `//label[normalize-space()="${nomeCampo}"]/parent::div/following-sibling::div//p[contains(@class,'orangehrm-file-name')]`;
     },
 
 
@@ -77,6 +90,10 @@ const comunsLocators = {
 
     getEditarNaLinha(informacao) {
         return `${this.getLinhaNaLista(informacao)}//button[.//i[contains(@class,'bi-pencil-fill')]]`;
+    },
+
+    getVisualizarNaLinha(informacao) {
+        return `${this.getLinhaNaLista(informacao)}//button[.//i[contains(@class,'bi-eye-fill')]]`;
     },
 
     getBotaoModal(nomeBotao) {

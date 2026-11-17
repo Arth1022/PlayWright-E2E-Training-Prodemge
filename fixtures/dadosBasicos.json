@@ -37,7 +37,10 @@
     "vacancies": "Vacancies",
     "addVacancy": "Add Vacancy",
     "editVacancy": "Edit Vacancy",
-    "qaEngineer": "QA Engineer"
+    "qaEngineer": "QA Engineer",
+    "candidates": "Candidates",
+    "addCandidate": "Add Candidate",
+    "candidateProfile": "Candidate Profile"
   },
   "campo": {
     "employeeId": "Employee Id",
@@ -54,7 +57,15 @@
     "vacancyName": "Vacancy Name",
     "jobTitle": "Job Title",
     "hiringManager": "Hiring Manager",
-    "vacancy": "Vacancy"
+    "vacancy": "Vacancy",
+    "jobVacancy": "Job Vacancy",
+    "email": "Email",
+    "contactNumber": "Contact Number",
+    "resume": "Resume",
+    "keywords": "Keywords",
+    "dateOfApplication": "Date of Application",
+    "notes": "Notes",
+    "consentToKeepData": "Consent to keep data"
   },
   "pessoa": {
     "joao": "Joao",
@@ -72,6 +83,8 @@
  },
   "arquivo": {
     "arquivoPDFTestePath": "fixtures/arquivoPDFTeste.pdf",
+    "arquivoPDFTesteNome": "arquivoPDFTeste.pdf",
+    "extensaoPdf": "pdf",
     "imagemJPGTestePath": "fixtures/imagemJPGTeste.jpg",
     "imagemPNGTestePath": "fixtures/imagemPNGTeste.png",
     "imagemUsuarioTestePath": "fixtures/imagemUsuarioTeste.jpg",
@@ -84,6 +97,10 @@
     "fotoPerfil": "Foto de Perfil Funcionario",
     "senhaValida": "Teste@2026",
     "novaSenhaValida": "Teste@2027",
-    "senhaMenorQue7Caracteres": "abc12"
+    "senhaMenorQue7Caracteres": "abc12",
+    "dominioEmailTeste": "@teste.com",
+    "telefoneValido": "31999998888",
+    "dataAplicacao": "2026-10-11",
+    "curriculoCandidato": "Curriculo do Candidato"
   }
 }

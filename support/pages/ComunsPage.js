@@ -55,6 +55,11 @@ export default class ComunsPage {
     await this.helpersPage.preencherCampoEscrevendoTexto(campo, texto);
   }
 
+  async validarValorNome(placeholderCampo, valorEsperado) {
+    const campo = this.page.locator(comunsLocators.getCampoPorPlaceholder(placeholderCampo));
+    await this.helpersPage.validarTextoLocalExatoNoInput(campo, valorEsperado);
+  }
+
   async validarMensagemErroNoNome(placeholderCampo, mensagem) {
     const mensagemErro = this.page.locator(comunsLocators.getMensagemErroPorPlaceholder(placeholderCampo));
     await this.helpersPage.aguardarElemDisponivelEVisivel(mensagemErro);
@@ -73,10 +78,41 @@ export default class ComunsPage {
     await this.helpersPage.validarTextoLocalExato(mensagemErro, mensagem);
   }
 
+  async preencherAreaTexto(nomeCampo, texto) {
+    const campo = this.page.locator(comunsLocators.getAreaTextoPorLabel(nomeCampo));
+    await this.helpersPage.aguardarElemDisponivelEVisivel(campo);
+    await this.helpersPage.preencherCampoEscrevendoTexto(campo, texto);
+  }
+
+  async validarValorAreaTexto(nomeCampo, valorEsperado) {
+    const campo = this.page.locator(comunsLocators.getAreaTextoPorLabel(nomeCampo));
+    await this.helpersPage.validarTextoLocalExatoNoInput(campo, valorEsperado);
+  }
+
   async marcarCheckbox(nomeCampo) {
     const checkbox = this.page.locator(comunsLocators.getCheckboxPorLabel(nomeCampo));
     await this.helpersPage.aguardarElemDisponivelEVisivel(checkbox);
     await checkbox.click();
+  }
+
+  async inserirArquivo(nomeCampo, caminhoArquivo) {
+    const botaoArquivo = this.page.locator(comunsLocators.getBotaoArquivoPorLabel(nomeCampo));
+    await this.helpersPage.aguardarElemDisponivelEVisivel(botaoArquivo);
+    await this.helpersPage.adicionarArquivoComClickBotao(botaoArquivo, caminhoArquivo);
+  }
+
+  async validarNomeArquivo(nomeCampo, nomeArquivo) {
+    const arquivo = this.page.locator(comunsLocators.getNomeArquivoPorLabel(nomeCampo));
+    await this.helpersPage.aguardarElemDisponivelEVisivel(arquivo);
+    await this.helpersPage.validarTextoLocalExato(arquivo, nomeArquivo);
+  }
+
+  // Retorna o download para ser validado no teste com helpersPage.validarDownloadArquivo
+  async baixarArquivo(nomeCampo) {
+    const arquivo = this.page.locator(comunsLocators.getNomeArquivoPorLabel(nomeCampo));
+    await this.helpersPage.aguardarElemDisponivelEVisivel(arquivo);
+    const download = await this.helpersPage.baixarArquivoComClickBotao(arquivo);
+    return download;
   }
 
   async abrirDropdown(nomeCampo) {
@@ -91,6 +127,12 @@ export default class ComunsPage {
     await this.helpersPage.aguardarElemDisponivelEVisivel(item);
     await item.click();
     await this.helpersPage.aguardarElementoSumir(item);
+  }
+
+  async validarOpcaoDropdown(nomeCampo, opcao) {
+    const dropdown = this.page.locator(comunsLocators.getDropdownPorLabel(nomeCampo));
+    await this.helpersPage.aguardarElemDisponivelEVisivel(dropdown);
+    await this.helpersPage.validarTextoLocalExato(dropdown, opcao);
   }
 
   async validarValorCampo(nomeCampo, valorEsperado) {
@@ -130,6 +172,13 @@ export default class ComunsPage {
     const botaoEditar = this.page.locator(comunsLocators.getEditarNaLinha(informacao));
     await this.helpersPage.aguardarElemDisponivelEVisivel(botaoEditar);
     await botaoEditar.click();
+  }
+
+  async clicarVisualizarNaLinha(informacao) {
+    await this.garantirTelaCarregada();
+    const botaoVisualizar = this.page.locator(comunsLocators.getVisualizarNaLinha(informacao));
+    await this.helpersPage.aguardarElemDisponivelEVisivel(botaoVisualizar);
+    await botaoVisualizar.click();
   }
 
   async validarModal(tituloModal) {
