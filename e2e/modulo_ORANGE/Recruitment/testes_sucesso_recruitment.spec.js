@@ -15,14 +15,14 @@ test.describe('[recruitment_sucesso] Testes tela Recruitment', () => {
             const loginFlows = new LoginFlows(page);
             const pimFlows = new PimFlows(page);
             await loginFlows.entrarUrlAutenticadaOrange();
-            // cria no PIM o funcionario que sera o Hiring Manager da vaga
+            // cria no PIM o funcionário que será o Hiring Manager da vaga
             const codigoUnico = await pimFlows.cadastrarFuncionario();
             testInfo['codigoUnico'] = codigoUnico;
         });
 
         test.afterEach(async ({ page, papelAutenticado }, testInfo) => {
             test.skip(papelAutenticado !== 'operador');
-            // remove a vaga criada no teste e depois o funcionario usado como Hiring Manager
+            // remove a vaga criada no teste e depois o funcionário usado como Hiring Manager
             const codigoUnico = testInfo['codigoUnico'];
             const nomeVaga = testInfo['nomeVaga'];
             const recruitmentFlows = new RecruitmentFlows(page);
@@ -57,7 +57,7 @@ test.describe('[recruitment_sucesso] Testes tela Recruitment', () => {
             await comunsPage.preencherCampoComTexto(campo.hiringManager, codigoUnico);
             await comunsPage.selecionarOpcaoDropdown(nomeCompleto);
             await comunsPage.clicarBotao(botao.save);
-            // a mensagem temporaria nao e validada (instavel, conforme exercicio); o site so abre o Edit Vacancy apos salvar
+            // a mensagem temporária não é validada (instável, conforme exercício); o site só abre o Edit Vacancy após salvar
             await comunsPage.garantirTelaPorTituloCarregada(opcao.editVacancy);
         });
     });
@@ -66,22 +66,23 @@ test.describe('[recruitment_sucesso] Testes tela Recruitment', () => {
 
         test.beforeEach(async ({ page, papelAutenticado }, testInfo) => {
             test.skip(papelAutenticado !== 'operador');
+            // Por o beforeEach deste teste ser pesado, ele pode passar do timeout padrão e falhar, usei o test.slow() para impedir essa falha por timeout
+            test.slow();
             const loginFlows = new LoginFlows(page);
             const pimFlows = new PimFlows(page);
             const recruitmentFlows = new RecruitmentFlows(page);
             await loginFlows.entrarUrlAutenticadaOrange();
-            // pre-condicao: funcionario criado no PIM (Hiring Manager) e vaga criada no Recruitment para o candidato
+            // pré-condição: funcionário criado no PIM (Hiring Manager) e vaga criada no Recruitment para o candidato
             const codigoUnico = await pimFlows.cadastrarFuncionario();
-            testInfo['codigoUnico'] = codigoUnico;
             const nomeVaga = await recruitmentFlows.cadastrarVaga(codigoUnico);
-            testInfo['nomeVaga'] = nomeVaga;
+            // salva os dois dados relacionados juntos, para o corpo do teste e o afterEach
+            testInfo['dadosVaga'] = { codigoUnico, nomeVaga };
         });
 
         test.afterEach(async ({ page, papelAutenticado }, testInfo) => {
             test.skip(papelAutenticado !== 'operador');
-            // remove na ordem inversa da criacao: candidato, vaga e funcionario
-            const codigoUnico = testInfo['codigoUnico'];
-            const nomeVaga = testInfo['nomeVaga'];
+            // remove na ordem inversa da criação: candidato, vaga e funcionário
+            const { codigoUnico, nomeVaga } = testInfo['dadosVaga'];
             const recruitmentFlows = new RecruitmentFlows(page);
             const pimFlows = new PimFlows(page);
             await recruitmentFlows.removerCandidatoDaVaga(nomeVaga);
@@ -98,8 +99,7 @@ test.describe('[recruitment_sucesso] Testes tela Recruitment', () => {
             const { pessoa, opcao, botao, campo, mensagem, arquivo, informacao } = dados;
             const comunsPage = new ComunsPage(page);
             const helpersPage = new HelpersPage(page);
-            const codigoUnico = testInfo['codigoUnico'];
-            const nomeVaga = testInfo['nomeVaga'];
+            const { codigoUnico, nomeVaga } = testInfo['dadosVaga'];
             const nomeCompleto = `${pessoa.joao} ${pessoa.pereira} ${pessoa.santos}`;
             const email = `${codigoUnico}${informacao.dominioEmailTeste}`;
 
@@ -121,10 +121,10 @@ test.describe('[recruitment_sucesso] Testes tela Recruitment', () => {
             await comunsPage.preencherAreaTexto(campo.notes, mensagem.testeAutomatizadoPlaywright);
             await comunsPage.marcarCheckbox(campo.consentToKeepData);
             await comunsPage.clicarBotao(botao.save);
-            await comunsPage.validarMensagemTemporaria(mensagem.succesfullySaved);
+            await comunsPage.validarMensagemTemporaria(mensagem.successfullySaved);
             await comunsPage.garantirTelaCarregada();
 
-            // a vaga e unica do teste, entao a linha do candidato e localizada pelo nome da vaga
+            // a vaga é única do teste, então a linha do candidato é localizada pelo nome da vaga
             await comunsPage.selecionarOpcaoMenu(opcao.recruitment);
             await comunsPage.garantirTelaInicialPorNomeCarregada(opcao.candidates);
             await comunsPage.abrirDropdown(campo.vacancy);
@@ -148,6 +148,46 @@ test.describe('[recruitment_sucesso] Testes tela Recruitment', () => {
             await comunsPage.validarValorCampo(campo.keywords, codigoUnico);
             await comunsPage.validarValorCampo(campo.dateOfApplication, informacao.dataAplicacao);
             await comunsPage.validarValorAreaTexto(campo.notes, mensagem.testeAutomatizadoPlaywright);
+        });
+    });
+
+    test.describe('[recruitment_candidato_exclusao] Exclusao de candidato pelo usuario (operador)', () => {
+
+        test.beforeEach(async ({ page, papelAutenticado }, testInfo) => {
+            test.skip(papelAutenticado !== 'operador');
+            const loginFlows = new LoginFlows(page);
+            const recruitmentFlows = new RecruitmentFlows(page);
+            await loginFlows.entrarUrlAutenticadaOrange();
+            const codigoUnico = await recruitmentFlows.cadastrarCandidato();
+            // salva o código para transportar para o corpo do teste
+            testInfo['codigoUnico'] = codigoUnico;
+        });
+
+        test('[CT_#0014] Excluir candidato', async ({ page, papelAutenticado }, testInfo) => {
+            console.info(`
+                ➡️ DESCRIÇÃO DO TESTE ⬅️
+                EXCLUI UM CANDIDATO CRIADO PELO TESTE, VALIDA A CONFIRMAÇÃO DE EXCLUSÃO, A MENSAGEM DE SUCESSO
+                E A AUSÊNCIA DO CANDIDATO NA LISTAGEM APÓS O FILTRO`);
+            test.skip(papelAutenticado !== 'operador');
+            const { pessoa, opcao, botao, campo, mensagem, informacao } = dados;
+            const comunsPage = new ComunsPage(page);
+            // recebe o código do candidato cadastrado no beforeEach (usado no sobrenome e nas Keywords)
+            const codigoUnico = testInfo['codigoUnico'];
+            const nomeCandidato = `${pessoa.joao} ${pessoa.pereira} ${codigoUnico}`;
+
+            await comunsPage.selecionarOpcaoMenu(opcao.recruitment);
+            await comunsPage.garantirTelaInicialPorNomeCarregada(opcao.candidates);
+            await comunsPage.preencherCampoComTexto(campo.keywords, codigoUnico);
+            await comunsPage.clicarBotao(botao.search);
+            await comunsPage.garantirTelaCarregada();
+            await comunsPage.validarInformacaoNaLista(nomeCandidato);
+
+            await comunsPage.clicarExcluirNaLinha(nomeCandidato);
+            await comunsPage.validarModal(informacao.areYouSure);
+            await comunsPage.clicarBotaoModal(botao.yesDelete);
+            await comunsPage.validarMensagemTemporaria(mensagem.successfullyDeleted);
+            await comunsPage.garantirTelaCarregada();
+            await comunsPage.validarInformacaoNaoEstaNaLista(nomeCandidato);
         });
     });
 });

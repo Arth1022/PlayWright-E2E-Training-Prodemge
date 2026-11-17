@@ -14,9 +14,9 @@ test.describe('[login_sucesso] Testes Login', () => {
                 LOGIN COM CREDENCIAIS VÁLIDAS PELO USUÁRIO Operador`);
 
       // abrir a url
-      //preencher nome usuario
+      //preencher nome usuário
       //preencher senha
-      //clicar botao login
+      //clicar botão login
 
       const operador = obterUsuarioPorPapel('operador');
       const comunsPage = new ComunsPage(nao_autenticado);

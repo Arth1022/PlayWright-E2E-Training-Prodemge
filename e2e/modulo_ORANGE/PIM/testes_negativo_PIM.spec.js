@@ -34,7 +34,7 @@ test.describe('[pim_negativo] Testes tela PIM', () => {
             await comunsPage.validarMensagemErroNoNome(campo.firstName, mensagem.required);
             await comunsPage.validarMensagemErroNoNome(campo.lastName, mensagem.required);
 
-            // O cadastro nao pode ser concluido, permanece na tela de Add Employee
+            // O cadastro não pode ser concluído, permanece na tela de Add Employee
             await comunsPage.garantirTelaPorTituloCarregada(opcao.addEmployee);
         });
     });

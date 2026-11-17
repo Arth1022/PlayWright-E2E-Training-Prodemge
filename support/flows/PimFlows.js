@@ -9,7 +9,7 @@ export default class PimFlows {
     this.comunsPage = new ComunsPage(page);
   }
 
-  // Pre-condicao: cadastra um funcionario com a massa padrao e retorna o codigo unico usado como Employee Id
+  // Pré-condição: cadastra um funcionário com a massa padrão e retorna o código único usado como Employee Id
   async cadastrarFuncionario() {
     const { pessoa, opcao, botao, campo } = dados;
     const codigoUnico = this.helpersPage.gerarCodigoAleatorio_abc12345();
@@ -22,7 +22,7 @@ export default class PimFlows {
     await this.comunsPage.preencherNome(campo.lastName, pessoa.santos);
     await this.comunsPage.preencherCampoComTexto(campo.employeeId, codigoUnico);
     await this.comunsPage.clicarBotao(botao.save);
-    // o site so abre a tela Personal Details depois que o cadastro foi salvo
+    // o site só abre a tela Personal Details depois que o cadastro foi salvo
     await this.comunsPage.garantirTelaPorTituloCarregada(opcao.personalDetails);
     return codigoUnico;
   }

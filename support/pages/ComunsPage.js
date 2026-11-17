@@ -121,7 +121,7 @@ export default class ComunsPage {
     await dropdown.click();
   }
 
-  // Seleciona a opcao na lista exibida, tanto do dropdown aberto quanto das sugestoes de um campo autocomplete
+  // Seleciona a opção na lista exibida, tanto do dropdown aberto quanto das sugestões de um campo autocomplete
   async selecionarOpcaoDropdown(opcao) {
     const item = this.page.locator(comunsLocators.getOpcaoLista(opcao));
     await this.helpersPage.aguardarElemDisponivelEVisivel(item);

@@ -75,11 +75,12 @@
   "mensagem": { 
   "credenciaisInvalidas": "Invalid credentials",
   "testeAutomatizadoPlaywright": "Teste automatizado em Playwright", 
-  "succesfullySaved": "Successfully Saved",
-  "succesfullyUpdated": "Successfully Updated",
-  "succesfullyDeleted": "Successfully Deleted",
+  "successfullySaved": "Successfully Saved",
+  "successfullyUpdated": "Successfully Updated",
+  "successfullyDeleted": "Successfully Deleted",
   "required": "Required",
-  "senhaMinimo7Caracteres": "Should have at least 7 characters"
+  "senhaMinimo7Caracteres": "Should have at least 7 characters",
+  "telefoneCaracteresInvalidos": "Allows numbers and only + - / ( )"
  },
   "arquivo": {
     "arquivoPDFTestePath": "fixtures/arquivoPDFTeste.pdf",
@@ -101,6 +102,8 @@
     "dominioEmailTeste": "@teste.com",
     "telefoneValido": "31999998888",
     "dataAplicacao": "2026-10-11",
-    "curriculoCandidato": "Curriculo do Candidato"
+    "curriculoCandidato": "Curriculo do Candidato",
+    "emailCandidato": "joao.santos@teste.com",
+    "telefoneInvalido": "31a99#"
   }
 }

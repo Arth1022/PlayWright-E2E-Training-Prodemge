@@ -18,7 +18,7 @@ test.describe('[pim_sucesso] Testes tela PIM', () => {
 
         test.afterEach(async ({ page, papelAutenticado }, testInfo) => {
             test.skip(papelAutenticado !== 'operador');
-            // recebe o codigo armazenado no corpo do teste e remove o funcionario criado
+            // recebe o código armazenado no corpo do teste e remove o funcionário criado
             const codigoUnico = testInfo['codigoUnico'];
             const pimFlows = new PimFlows(page);
             await pimFlows.removerFuncionario(codigoUnico);
@@ -35,7 +35,7 @@ test.describe('[pim_sucesso] Testes tela PIM', () => {
             const pimPage = new PimPage(page);
             const primeiroESegundoNome = `${pessoa.joao} ${pessoa.pereira}`;
             const codigoUnico = helpersPage.gerarCodigoAleatorio_abc12345();
-            // salva o codigo para transportar para o afterEach
+            // salva o código para transportar para o afterEach
             testInfo['codigoUnico'] = codigoUnico;
 
             await comunsPage.selecionarOpcaoMenu(opcao.pim);
@@ -50,7 +50,7 @@ test.describe('[pim_sucesso] Testes tela PIM', () => {
             const dimensoesFotoPerfil = await pimPage.validarFotoDePerfilECapturarDimensoes(informacao.fotoPerfil);
             await helpersPage.validarDimensoesImagem(dimensoesFotoPerfil, arquivo.limite200pxLarguraImg, arquivo.limite200pxAlturaImg, informacao.fotoPerfil);
             await comunsPage.clicarBotao(botao.save);
-            await comunsPage.validarMensagemTemporaria(mensagem.succesfullySaved);
+            await comunsPage.validarMensagemTemporaria(mensagem.successfullySaved);
             await comunsPage.garantirTelaCarregada();
             await comunsPage.selecionarOpcaoMenu(opcao.pim);
             await comunsPage.garantirTelaInicialPorNomeCarregada(opcao.employeeInformation);
@@ -71,7 +71,7 @@ test.describe('[pim_sucesso] Testes tela PIM', () => {
             const pimFlows = new PimFlows(page);
             await loginFlows.entrarUrlAutenticadaOrange();
             const codigoUnico = await pimFlows.cadastrarFuncionario();
-            // salva o codigo para transportar para o corpo do teste
+            // salva o código para transportar para o corpo do teste
             testInfo['codigoUnico'] = codigoUnico;
         });
 
@@ -82,7 +82,7 @@ test.describe('[pim_sucesso] Testes tela PIM', () => {
             test.skip(papelAutenticado !== 'operador');
             const { opcao, botao, mensagem, campo, informacao } = dados;
             const comunsPage = new ComunsPage(page);
-            // recebe o codigo do funcionario cadastrado no beforeEach
+            // recebe o código do funcionário cadastrado no beforeEach
             const codigoUnico = testInfo['codigoUnico'];
 
             await comunsPage.selecionarOpcaoMenu(opcao.pim);
@@ -95,7 +95,7 @@ test.describe('[pim_sucesso] Testes tela PIM', () => {
             await comunsPage.clicarExcluirNaLinha(codigoUnico);
             await comunsPage.validarModal(informacao.areYouSure);
             await comunsPage.clicarBotaoModal(botao.yesDelete);
-            await comunsPage.validarMensagemTemporaria(mensagem.succesfullyDeleted);
+            await comunsPage.validarMensagemTemporaria(mensagem.successfullyDeleted);
             await comunsPage.garantirTelaCarregada();
             await comunsPage.validarInformacaoNaoEstaNaLista(codigoUnico);
         });

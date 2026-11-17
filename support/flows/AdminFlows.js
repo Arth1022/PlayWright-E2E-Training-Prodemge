@@ -7,8 +7,8 @@ export default class AdminFlows {
     this.comunsPage = new ComunsPage(page);
   }
 
-  // Pre-condicao: cadastra o usuario vinculado ao funcionario criado pelo PimFlows.cadastrarFuncionario(),
-  // usando o mesmo codigo unico como Username
+  // Pré-condição: cadastra o usuário vinculado ao funcionário criado pelo PimFlows.cadastrarFuncionario(),
+  // usando o mesmo código único como Username
   async cadastrarUsuario(codigoUnico) {
     const { pessoa, opcao, botao, campo, informacao } = dados;
     await this.comunsPage.selecionarOpcaoMenu(opcao.admin);
@@ -25,7 +25,7 @@ export default class AdminFlows {
     await this.comunsPage.preencherCampoComTexto(campo.password, informacao.senhaValida);
     await this.comunsPage.preencherCampoComTexto(campo.confirmPassword, informacao.senhaValida);
     await this.comunsPage.clicarBotao(botao.save);
-    // o site so volta para a listagem System Users depois que o cadastro foi salvo
+    // o site só volta para a listagem System Users depois que o cadastro foi salvo
     await this.comunsPage.garantirTelaInicialPorNomeCarregada(opcao.systemUsers);
   }
 }

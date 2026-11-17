@@ -14,14 +14,14 @@ test.describe('[admin_sucesso] Testes tela Admin', () => {
             const loginFlows = new LoginFlows(page);
             const pimFlows = new PimFlows(page);
             await loginFlows.entrarUrlAutenticadaOrange();
-            // cria no PIM o funcionario que sera vinculado ao usuario cadastrado no teste
+            // cria no PIM o funcionário que será vinculado ao usuário cadastrado no teste
             const codigoUnico = await pimFlows.cadastrarFuncionario();
             testInfo['codigoUnico'] = codigoUnico;
         });
 
         test.afterEach(async ({ page, papelAutenticado }, testInfo) => {
             test.skip(papelAutenticado !== 'operador');
-            // remover o funcionario tambem remove o usuario vinculado a ele (exclusao em cascata no OrangeHRM)
+            // remover o funcionário também remove o usuário vinculado a ele (exclusão em cascata no OrangeHRM)
             const codigoUnico = testInfo['codigoUnico'];
             const pimFlows = new PimFlows(page);
             await pimFlows.removerFuncionario(codigoUnico);
@@ -55,7 +55,7 @@ test.describe('[admin_sucesso] Testes tela Admin', () => {
             await comunsPage.preencherCampoComTexto(campo.confirmPassword, informacao.senhaValida);
 
             await comunsPage.clicarBotao(botao.save);
-            await comunsPage.validarMensagemTemporaria(mensagem.succesfullySaved);
+            await comunsPage.validarMensagemTemporaria(mensagem.successfullySaved);
             await comunsPage.garantirTelaCarregada();
 
             await comunsPage.selecionarOpcaoMenu(opcao.admin);
@@ -78,7 +78,7 @@ test.describe('[admin_sucesso] Testes tela Admin', () => {
             const pimFlows = new PimFlows(page);
             const adminFlows = new AdminFlows(page);
             await loginFlows.entrarUrlAutenticadaOrange();
-            // pre-condicao completa: funcionario criado no PIM e usuario vinculado a ele criado no Admin
+            // pré-condição completa: funcionário criado no PIM e usuário vinculado a ele criado no Admin
             const codigoUnico = await pimFlows.cadastrarFuncionario();
             testInfo['codigoUnico'] = codigoUnico;
             await adminFlows.cadastrarUsuario(codigoUnico);
@@ -86,7 +86,7 @@ test.describe('[admin_sucesso] Testes tela Admin', () => {
 
         test.afterEach(async ({ page, papelAutenticado }, testInfo) => {
             test.skip(papelAutenticado !== 'operador');
-            // remover o funcionario tambem remove o usuario vinculado a ele (exclusao em cascata no OrangeHRM)
+            // remover o funcionário também remove o usuário vinculado a ele (exclusão em cascata no OrangeHRM)
             const codigoUnico = testInfo['codigoUnico'];
             const pimFlows = new PimFlows(page);
             await pimFlows.removerFuncionario(codigoUnico);
@@ -118,7 +118,7 @@ test.describe('[admin_sucesso] Testes tela Admin', () => {
             await comunsPage.preencherCampoComTexto(campo.password, informacao.novaSenhaValida);
             await comunsPage.preencherCampoComTexto(campo.confirmPassword, informacao.novaSenhaValida);
             await comunsPage.clicarBotao(botao.save);
-            await comunsPage.validarMensagemTemporaria(mensagem.succesfullyUpdated);
+            await comunsPage.validarMensagemTemporaria(mensagem.successfullyUpdated);
             await comunsPage.garantirTelaCarregada();
 
             await comunsPage.selecionarOpcaoMenu(opcao.admin);
@@ -142,7 +142,7 @@ test.describe('[admin_sucesso] Testes tela Admin', () => {
             const pimFlows = new PimFlows(page);
             const adminFlows = new AdminFlows(page);
             await loginFlows.entrarUrlAutenticadaOrange();
-            // pre-condicao completa: funcionario criado no PIM e usuario vinculado a ele criado no Admin
+            // pré-condição completa: funcionário criado no PIM e usuário vinculado a ele criado no Admin
             const codigoUnico = await pimFlows.cadastrarFuncionario();
             testInfo['codigoUnico'] = codigoUnico;
             await adminFlows.cadastrarUsuario(codigoUnico);
@@ -150,7 +150,7 @@ test.describe('[admin_sucesso] Testes tela Admin', () => {
 
         test.afterEach(async ({ page, papelAutenticado }, testInfo) => {
             test.skip(papelAutenticado !== 'operador');
-            // o teste exclui somente o usuario, o funcionario criado como pre-condicao continua no PIM e precisa ser removido
+            // o teste exclui somente o usuário, o funcionário criado como pré-condição continua no PIM e precisa ser removido
             const codigoUnico = testInfo['codigoUnico'];
             const pimFlows = new PimFlows(page);
             await pimFlows.removerFuncionario(codigoUnico);
@@ -176,7 +176,7 @@ test.describe('[admin_sucesso] Testes tela Admin', () => {
             await comunsPage.validarModal(informacao.areYouSure);
             await comunsPage.clicarBotaoModal(botao.yesDelete);
 
-            await comunsPage.validarMensagemTemporaria(mensagem.succesfullyDeleted);
+            await comunsPage.validarMensagemTemporaria(mensagem.successfullyDeleted);
             await comunsPage.garantirTelaCarregada();
             await comunsPage.validarInformacaoNaoEstaNaLista(codigoUnico);
         });

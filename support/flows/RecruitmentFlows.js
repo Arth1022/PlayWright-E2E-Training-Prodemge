@@ -1,13 +1,15 @@
+import HelpersPage from '../pages/HelpersPage.js';
 import ComunsPage from '../pages/ComunsPage.js';
 import dados from '../../fixtures/dadosBasicos.json';
 
 export default class RecruitmentFlows {
   constructor(page) {
     this.page = page;
+    this.helpersPage = new HelpersPage(page);
     this.comunsPage = new ComunsPage(page);
   }
 
-  // Pre-condicao: cadastra uma vaga com os campos obrigatorios, tendo como Hiring Manager o funcionario
+  // Pré-condição: cadastra uma vaga com os campos obrigatórios, tendo como Hiring Manager o funcionário
   // criado pelo PimFlows.cadastrarFuncionario(), e retorna o nome da vaga
   async cadastrarVaga(codigoUnico) {
     const { pessoa, opcao, botao, campo, mensagem } = dados;
@@ -23,7 +25,7 @@ export default class RecruitmentFlows {
     await this.comunsPage.preencherCampoComTexto(campo.hiringManager, codigoUnico);
     await this.comunsPage.selecionarOpcaoDropdown(`${pessoa.joao} ${pessoa.pereira} ${pessoa.santos}`);
     await this.comunsPage.clicarBotao(botao.save);
-    // o site so abre a tela Edit Vacancy depois que a vaga foi salva
+    // o site só abre a tela Edit Vacancy depois que a vaga foi salva
     await this.comunsPage.garantirTelaPorTituloCarregada(opcao.editVacancy);
     return nomeVaga;
   }
@@ -47,6 +49,25 @@ export default class RecruitmentFlows {
     await this.comunsPage.garantirTelaCarregada();
   }
 
+  // Pré-condição: cadastra um candidato com a massa padrão e retorna o código único usado no sobrenome e nas Keywords
+  async cadastrarCandidato() {
+    const { pessoa, opcao, botao, campo, informacao } = dados;
+    const codigoUnico = this.helpersPage.gerarCodigoAleatorio_abc12345();
+    await this.comunsPage.selecionarOpcaoMenu(opcao.recruitment);
+    await this.comunsPage.garantirTelaInicialPorNomeCarregada(opcao.candidates);
+    await this.comunsPage.clicarBotao(botao.add);
+    await this.comunsPage.garantirTelaPorTituloCarregada(opcao.addCandidate);
+    await this.comunsPage.preencherNome(campo.firstName, pessoa.joao);
+    await this.comunsPage.preencherNome(campo.middleName, pessoa.pereira);
+    await this.comunsPage.preencherNome(campo.lastName, codigoUnico);
+    await this.comunsPage.preencherCampoComTexto(campo.email, informacao.emailCandidato);
+    await this.comunsPage.preencherCampoComTexto(campo.keywords, codigoUnico);
+    await this.comunsPage.clicarBotao(botao.save);
+    // o site só abre o perfil depois que o candidato foi salvo
+    await this.comunsPage.garantirTelaPorTituloCarregada(opcao.candidateProfile);
+    return codigoUnico;
+  }
+
   async pesquisarCandidatoPorVaga(nomeVaga) {
     const { opcao, botao, campo } = dados;
     await this.comunsPage.selecionarOpcaoMenu(opcao.recruitment);
@@ -57,7 +78,7 @@ export default class RecruitmentFlows {
     await this.comunsPage.garantirTelaCarregada();
   }
 
-  // A vaga e unica do teste, entao a linha do candidato e localizada pelo nome da vaga
+  // A vaga é única do teste, então a linha do candidato é localizada pelo nome da vaga
   async removerCandidatoDaVaga(nomeVaga) {
     const { botao } = dados;
     await this.pesquisarCandidatoPorVaga(nomeVaga);

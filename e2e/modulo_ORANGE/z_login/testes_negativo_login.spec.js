@@ -15,10 +15,10 @@ test.describe('[login_negativo] Testes Login', () => {
                 TENTA REALIZAR LOGIN COM UM USUÁRIO INVÁLIDO E VALIDA A MENSAGEM DE ERRO`);
 
       // abrir a url
-      // preencher usuario inexistente
-      // preencher a senha correta do usuario operador
-      // clicar botao login
-      // validar mensagem de erro e permanencia na tela de login
+      // preencher usuário inexistente
+      // preencher a senha correta do usuário operador
+      // clicar botão login
+      // validar mensagem de erro e permanência na tela de login
 
       const { login, mensagem } = dados;
       const operador = obterUsuarioPorPapel('operador');

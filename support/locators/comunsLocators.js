@@ -63,7 +63,7 @@ const comunsLocators = {
         return `//label[normalize-space()="${nomeCampo}"]/parent::div/following-sibling::div//div[contains(@class,'oxd-file-button')]`;
     },
 
-    // Nome do arquivo ja carregado no campo, que tambem aciona o download ao ser clicado
+    // Nome do arquivo já carregado no campo, que também aciona o download ao ser clicado
     getNomeArquivoPorLabel(nomeCampo) {
         return `//label[normalize-space()="${nomeCampo}"]/parent::div/following-sibling::div//p[contains(@class,'orangehrm-file-name')]`;
     },
@@ -73,13 +73,13 @@ const comunsLocators = {
         return `//div[@role='listbox']//div[@role='option'][normalize-space()="${opcao}"]`;
     },
 
-    // Celula da listagem que contem exatamente a informacao pesquisada,
+    // Célula da listagem que contém exatamente a informação pesquisada,
     // permitindo comparar o dado esperado com o que o site exibe na coluna
     getInformacaoNaLista(informacao) {
         return `//div[contains(@class,'oxd-table-body')]//div[contains(@class,'oxd-table-row')]//div[@role='cell'][normalize-space()="${informacao}"]`;
     },
 
-    // Linha inteira da listagem, usada para acionar os botoes do registro localizado
+    // Linha inteira da listagem, usada para acionar os botões do registro localizado
     getLinhaNaLista(informacao) {
         return `//div[contains(@class,'oxd-table-body')]//div[contains(@class,'oxd-table-row')][.//div[@role='cell'][normalize-space()="${informacao}"]]`;
     },

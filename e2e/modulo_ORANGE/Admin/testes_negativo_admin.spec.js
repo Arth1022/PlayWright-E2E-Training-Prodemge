@@ -13,14 +13,14 @@ test.describe('[admin_negativo] Testes tela Admin', () => {
             const loginFlows = new LoginFlows(page);
             const pimFlows = new PimFlows(page);
             await loginFlows.entrarUrlAutenticadaOrange();
-            // cria no PIM o funcionario usado no cadastro, para que a senha seja o unico dado invalido do formulario
+            // cria no PIM o funcionário usado no cadastro, para que a senha seja o único dado inválido do formulário
             const codigoUnico = await pimFlows.cadastrarFuncionario();
             testInfo['codigoUnico'] = codigoUnico;
         });
 
         test.afterEach(async ({ page, papelAutenticado }, testInfo) => {
             test.skip(papelAutenticado !== 'operador');
-            // o usuario não chega a ser criado, entao remove apenas o funcionario criado como pre-condicao
+            // o usuário não chega a ser criado, então remove apenas o funcionário criado como pré-condição
             const codigoUnico = testInfo['codigoUnico'];
             const pimFlows = new PimFlows(page);
             await pimFlows.removerFuncionario(codigoUnico);
@@ -54,7 +54,7 @@ test.describe('[admin_negativo] Testes tela Admin', () => {
 
             await comunsPage.clicarBotao(botao.save);
             await comunsPage.validarMensagemErroNoCampo(campo.password, mensagem.senhaMinimo7Caracteres);
-            // o cadastro não pode ser concluido, permanece na tela de Add User
+            // o cadastro não pode ser concluído, permanece na tela de Add User
             await comunsPage.garantirTelaPorTituloCarregada(opcao.addUser);
         });
     });

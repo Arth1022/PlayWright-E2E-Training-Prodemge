@@ -11,7 +11,7 @@ test.describe('[logout_sucesso] Testes de Logout', () => {
     test.describe('[operador_logout] Logout com sucesso (operador)', () => {
 
         test.beforeEach(async ({ nao_autenticado }) => {
-            // teste de logout inicia sem sessao salva, entao o login e feito pelo flow
+            // teste de logout inicia sem sessão salva, então o login é feito pelo flow
             const operador = obterUsuarioPorPapel('operador');
             const loginFlows = new LoginFlows(nao_autenticado);
             await loginFlows.realizarLoginOrangeHRM(operador.cpf, operador.senha);
