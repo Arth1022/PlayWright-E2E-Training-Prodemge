@@ -39,6 +39,10 @@ const comunsLocators = {
         return `//input[@placeholder="${placeholder}"]/parent::div/following-sibling::span[contains(@class,'oxd-input-field-error-message')]`;
     },
 
+    getMensagemErroPorLabel(nomeCampo) {
+        return `//label[normalize-space()="${nomeCampo}"]/parent::div/following-sibling::span[contains(@class,'oxd-input-field-error-message')]`;
+    },
+
     getCheckboxPorLabel(nomeCampo) {
         return `//label[normalize-space()="${nomeCampo}"]/parent::div/following-sibling::div//span[contains(@class,'oxd-checkbox-input')]`;
     },

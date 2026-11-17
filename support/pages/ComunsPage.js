@@ -60,6 +60,12 @@ export default class ComunsPage {
     await this.helpersPage.preencherCampoEscrevendoTexto(campo, texto);
   }
 
+  async validarMensagemErroNoCampo(nomeCampo, mensagem) {
+    const mensagemErro = this.page.locator(comunsLocators.getMensagemErroPorLabel(nomeCampo));
+    await this.helpersPage.aguardarElemDisponivelEVisivel(mensagemErro);
+    await this.helpersPage.validarTextoLocalExato(mensagemErro, mensagem);
+  }
+
   async marcarCheckbox(nomeCampo) {
     const checkbox = this.page.locator(comunsLocators.getCheckboxPorLabel(nomeCampo));
     await this.helpersPage.aguardarElemDisponivelEVisivel(checkbox);

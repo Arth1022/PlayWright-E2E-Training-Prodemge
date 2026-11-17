@@ -58,7 +58,8 @@
   "succesfullySaved": "Successfully Saved",
   "succesfullyUpdated": "Successfully Updated",
   "succesfullyDeleted": "Successfully Deleted",
-  "required": "Required"
+  "required": "Required",
+  "senhaMinimo7Caracteres": "Should have at least 7 characters"
  },
   "arquivo": {
     "arquivoPDFTestePath": "fixtures/arquivoPDFTeste.pdf",
@@ -73,6 +74,7 @@
     "login": "Login",
     "fotoPerfil": "Foto de Perfil Funcionario",
     "senhaValida": "Teste@2026",
-    "novaSenhaValida": "Teste@2027"
+    "novaSenhaValida": "Teste@2027",
+    "senhaMenorQue7Caracteres": "abc12"
   }
 }
